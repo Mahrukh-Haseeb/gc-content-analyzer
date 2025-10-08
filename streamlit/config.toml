@@ -1,0 +1,18 @@
+# --- Light theme ---
+[theme.light]
+primaryColor = "#2E86C1"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F0F2F6"
+textColor = "#000000"
+font = "sans serif"
+
+# --- Dark theme ---
+[theme.dark]
+primaryColor = "#4CAF50"
+backgroundColor = "#1E1E1E"
+secondaryBackgroundColor = "#2C2C2C"
+textColor = "#FAFAFA"
+font = "sans serif"
+
+[server]
+headless = true
