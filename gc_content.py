@@ -1,8 +1,4 @@
-"""
-GC Content Analysis Backend Module
-Author: [Your Name]
-Provides functions for reading DNA sequences and calculating GC content.
-"""
+
 
 import argparse
 import csv

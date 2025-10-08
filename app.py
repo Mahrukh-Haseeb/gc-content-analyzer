@@ -80,7 +80,7 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# --- Fun non-bio explanation ---
+
 st.markdown(f"""
 <div style='background-color:{desc_bg}; padding:20px; border-radius:12px; margin-top:20px;'>
 <h3 style='color:{highlight}; margin-top:0;'> For Non-biologists:</h3>
