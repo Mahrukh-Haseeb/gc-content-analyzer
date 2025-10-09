@@ -1,3 +1,13 @@
+---
+title: GC Content Analyzer
+emoji: "🧬"
+color: "#FF5733"
+sdk: streamlit
+app_file: app.py
+license: mit
+---
+
+
 
 # GC Content Analyzer
 
