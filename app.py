@@ -2,10 +2,10 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import pandas as pd
 import io
-# NOTE: Using the function from the uploaded file directly
+# Using the function from the uploaded file directly
 from gc_content import gc_content 
 
-# --- Page config ---
+
 st.set_page_config(page_title="GC Content Analyzer", layout="wide")
 st.title("🧬 GC Content Analysis Tool")
 
@@ -21,7 +21,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# --- Sidebar Theme Selector ---
+# --- ------------------- ---
 theme_option = st.sidebar.selectbox("Choose Theme", ["Light", "Dark"])
 
 # --- Theme colors ---
@@ -97,15 +97,15 @@ def submit_sequences():
             if seq and all(base in "ATGC" for base in seq):
                 valid_seqs.append((header, seq))
             elif seq:
-                # Use st.sidebar.error to keep the error message in the sidebar
-                st.sidebar.error(f"❌ Invalid characters in sequence '{header}'. Only A, T, G, C are allowed.")
+                
+                st.sidebar.error(f" Invalid characters in sequence '{header}'. Only A, T, G, C are allowed.")
     else:
         sequences_list = [seq.strip().replace(" ", "").replace("\n", "") for seq in text.split(",") if seq.strip()]
         for i, seq in enumerate(sequences_list, start=1):
             if seq and all(base in "ATGC" for base in seq):
                 valid_seqs.append((f"Sequence_{i}", seq))
             elif seq:
-                st.sidebar.error(f"❌ Invalid characters in Sequence {i}. Only A, T, G, C are allowed.")
+                st.sidebar.error(f" Invalid characters in Sequence {i}. Only A, T, G, C are allowed.")
                 
     st.session_state.sequences = valid_seqs
     st.session_state.uploaded_file_name = None
@@ -119,8 +119,7 @@ def trigger_clear_sequences():
         "clear_flag": True, 
     })
     
-    # Crucial: Only increment the key if the file uploader is actively visible.
-    # This ensures the file uploader is cleared and prevents the flicker.
+ 
     if st.session_state.get("current_option") == "Upload FASTA File":
         st.session_state.file_uploader_key += 1 
 
@@ -176,20 +175,20 @@ if option == "Upload FASTA File":
                 if seq and all(base in "ATGC" for base in seq): 
                     valid_seqs.append((header, seq))
                 elif seq:
-                    input_container.warning(f"⚠️ Sequence '{header}' skipped due to invalid characters. Only A, T, G, C allowed.")
+                    input_container.warning(f" Sequence '{header}' skipped due to invalid characters. Only A, T, G, C allowed.")
             
             st.session_state.sequences = valid_seqs
             st.session_state.uploaded_file_name = uploaded_file.name
             
             if not st.session_state.sequences:
-                input_container.error("❌ No valid DNA sequences found in the uploaded file.")
+                input_container.error(" No valid DNA sequences found in the uploaded file.")
                 
         except Exception as e:
-            input_container.error(f"❌ Error processing file: {e}")
+            input_container.error(f" Error processing file: {e}")
             st.session_state.sequences = []
             st.session_state.uploaded_file_name = None
     else:
-        # If the file uploader is empty, ensure the sequence state is cleared
+   
         if st.session_state.uploaded_file_name:
              st.session_state.sequences = []
              st.session_state.uploaded_file_name = None
@@ -208,22 +207,21 @@ elif option == "Paste Sequence Directly":
 # --- Buttons ---
 button_container = st.sidebar.container()
 
-# Submit button only appears and works when the Paste option is selected
+
 if option == "Paste Sequence Directly":
     button_container.button("Submit Sequences", on_click=submit_sequences)
     
-    # NEW FIX: Remove Clear Sequences button from Paste mode to eliminate flicker.
-    # Sequences can be cleared manually from the text area or by switching modes.
+
     
 elif option == "Upload FASTA File":
-    # The Clear Sequences button is necessary for the file uploader widget.
+
     button_container.button("Clear Sequences", on_click=trigger_clear_sequences)
 
 
 # --- Use sequences from session_state ---
 sequences = st.session_state.sequences
 
-# === CONDITIONAL RENDERING: Show description/results based on sequence presence ===
+
 if not sequences and not st.session_state.uploaded_file_name:
     
     # --- About Section ---
@@ -297,10 +295,10 @@ else:
         names.append(name)
         
     if not results:
-        st.error("❌ All sequences contained invalid characters or were empty and have been skipped.")
+        st.error(" All sequences contained invalid characters or were empty and have been skipped.")
     else:
         # === Tabs ===
-        tab1, tab2, tab3, tab4 = st.tabs(["📊 Overview", "📈 Graphs", "📋 Results Table", "⬇️ Downloads"])
+        tab1, tab2, tab3, tab4 = st.tabs([" Overview", " Graphs", " Results Table", " Downloads"])
 
         # --- Overview Tab ---
         with tab1:
@@ -324,7 +322,7 @@ else:
         with tab2:
             fig, ax = plt.subplots(1, 2, figsize=(10, 4))
             
-            # Conditionally apply dark mode theme to Matplotlib figures
+          
             if theme_option == "Dark":
                 fig.patch.set_facecolor(chart_bg)
                 ax[0].set_facecolor(chart_bg)
