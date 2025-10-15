@@ -7,7 +7,7 @@ from gc_content import gc_content
 
 
 st.set_page_config(page_title="GC Content Analyzer", layout="wide")
-st.title("🧬 GC Content Analysis Tool")
+st.title("GC Content Analysis Tool")
 
 
 # --- Hide anchor link icons beside headers ---
